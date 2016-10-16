@@ -1,0 +1,11 @@
+@(name: String, identifier: String, pwd: String)(implicit messages: Messages)
+@Messages("web.mail.welcome.hello", name)
+
+@Messages("web.mail.welcome.prelink")
+
+Identifiant: @identifier
+Mot de passe: @pwd
+Connectez vous en vous rendant sur @Messages("web.mail.siteUrl").
+@Messages("web.mail.welcome.postlink")
+
+@Messages("web.mail.sign")

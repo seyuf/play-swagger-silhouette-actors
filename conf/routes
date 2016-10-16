@@ -1,0 +1,185 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+#init app
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET         /                                    @controllers.Application.index
+
+
+GET   /docs/swagger.json                                   @controllers.swagger.ApiSpecs.specs
+GET   /docs/swagger-ui/*file                               controllers.Assets.at(path:String="/public/lib/swagger-ui", file:String)
+
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET         /install                              controllers.Application.install
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: first install
+#      schema:
+#        $ref: '#/definitions/models.daos.user.User'
+###
+POST        /install/:secret                      controllers.Application.setup(secret: String)
+
+#basic url & auth
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET         /logout                               @controllers.Session.logout
+
+
+
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: email & password
+###
+POST        /auth/login                           @controllers.Session.authenticate
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: create a new user
+#      schema:
+#        $ref: '#/definitions/models.daos.user.User'
+###
+POST        /auth/signup                          @controllers.Session.signUp(generated: Boolean)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET         /auth/password                        @controllers.Session.forgottenPassword(email: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: reset password with token
+###
+POST        /auth/password/reset                  @controllers.Session.resetPasswordFromToken
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: modify your password
+###
+POST        /auth/password/modify                 @controllers.Session.modifyPassword
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+DELETE      /auth/close/account/:email            @controllers.Session.closeAccount(email: String)
+
+
+###
+#  summary: log user
+#  description: auth user post
+#  parameters:
+#    - name: email
+#      description: login identifier
+#      format: int
+#    - name: password
+#      description: your password
+#      format: int
+#  responses:
+#    200:
+#      description: Profile information for a user
+#      schema:
+#        $ref: '#/definitions/package models.daos.user.User'
+###
+
+
+#Social auth
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+POST         /authenticate/:provider               @controllers.SocialAuthCtrl.authenticate(provider)
+
+
+#user
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: update your user infos normal
+#      schema:
+#        $ref: '#/definitions/models.daos.user.User'
+###
+POST    /user/update/normal/:email                              @controllers.UserCtrl.updateUser(email: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+#    - name: body
+#      description: update your user infos normal admin
+#      schema:
+#        $ref: '#/definitions/models.daos.user.User'
+###
+POST    /user/update/admin/:id                              @controllers.UserCtrl.updateUserAdmin(id: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user                                  @controllers.UserCtrl.userList(page: Int ?= 1, numberByPage: Int ?= 25)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/email/:email                                  @controllers.UserCtrl.getByEmail(email: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/count                                  @controllers.UserCtrl.count
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/list/ids                         @controllers.UserCtrl.getUserByIds(ids: List[String])
+
+
+POST 	/user/logos/:user_id                   @controllers.UserCtrl.uploadLogo(user_id: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /logos/*filename                       @controllers.UserCtrl.getLogo(filename: String)
+
+###
+#  parameters:
+#    - $ref: "#/parameters/domain"
+###
+GET     /user/valid                            @controllers.UserCtrl.validate(email:String)
+
+
+

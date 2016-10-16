@@ -1,0 +1,20 @@
+swagger: "2.0"
+info:
+  title: "WEB RTC API"
+  description: "Cym IT www.cymit.fr"
+  version: "1.0.0"
+host: localhost:7000
+basePath: /
+schemes:
+  - "http"
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+ domain:
+   name: "X-Auth-Token"
+   in: header
+   description: option auth token
+   required: false
+   type: string
