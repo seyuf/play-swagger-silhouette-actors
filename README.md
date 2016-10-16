@@ -1,4 +1,3 @@
-
 # play-swagger-silhouette-actors
 
 Play 2.5 & akka actor backend in order to handle websocketing (room based scheme), requiring authentication and authorization rights for uers to join.
@@ -42,9 +41,9 @@ Activator run
  3.Login Example:
 
 ```
- 	POST /auth/login
- 	-body: {
-  		"email": "test@test.loc",
-  		"password": "test"
- 	}
+ 	  POST /auth/login
+ 	  -body: {
+  		  "email": "test@test.loc",
+  		  "password": "test"
+ 	  }
  ```
