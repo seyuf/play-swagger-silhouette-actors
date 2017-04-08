@@ -181,5 +181,6 @@ GET     /logos/*filename                       @controllers.UserCtrl.getLogo(fil
 ###
 GET     /user/valid                            @controllers.UserCtrl.validate(email:String)
 
-
+##chat services
+GET     /basic/watcher/:eventName/:username/:token        @controllers.BasicActorCtrl.send(eventName: String, username: String, token: String)
 

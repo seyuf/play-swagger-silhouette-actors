@@ -18,7 +18,7 @@ libraryDependencies ++= Seq(
   "com.mohiva" %% "play-silhouette-crypto-jca" % "4.0.0",
   "com.mohiva" %% "play-silhouette-cas" % "4.0.0",
   "org.reactivemongo" %% "play2-reactivemongo" % "0.11.11",
-  "com.mohiva" %% "play-silhouette-persistence-reactivemongo" % "4.0.0-RC1",
+  "com.mohiva" %% "play-silhouette-persistence-reactivemongo" % "4.0.0",
   "org.webjars" %% "webjars-play" % "2.5.0-2",
   //"org.reactivemongo" %% "play2-reactivemongo" % "0.12.0-SNAPSHOT",
   "com.typesafe.play" % "play-mailer_2.11" % "5.0.0-M1",
